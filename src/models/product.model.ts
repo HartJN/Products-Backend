@@ -12,6 +12,7 @@ export interface ProductDocument extends mongoose.Document {
   image: string;
   createdAt: Date;
   updatedAt: Date;
+  productId?: string;
 }
 
 const productSchema = new mongoose.Schema(
