@@ -1,4 +1,4 @@
-import { object, string } from 'zod'
+import { object, string } from 'zod';
 
 export const createSessionSchema = object({
   body: object({
@@ -13,4 +13,4 @@ export const createSessionSchema = object({
       message: 'Password must be at least 6 characters',
     }),
   }),
-})
+});

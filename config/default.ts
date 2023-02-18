@@ -1,5 +1,6 @@
-import dotenv from 'dotenv'
-dotenv.config()
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 export default {
   port: process.env.PORT,
@@ -9,4 +10,4 @@ export default {
   refreshTokenTtl: process.env.REFRESH_TOKEN_TTL,
   publicKey: process.env.PUBLIC_KEY,
   privateKey: process.env.PRIVATE_KEY,
-}
+};

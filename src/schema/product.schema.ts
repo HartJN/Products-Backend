@@ -1,4 +1,4 @@
-import { object, number, string, TypeOf } from 'zod'
+import { object, number, string, TypeOf } from 'zod';
 
 const payload = {
   body: object({
@@ -15,7 +15,7 @@ const payload = {
       required_error: 'Image is required',
     }),
   }),
-}
+};
 
 const params = {
   params: object({
@@ -23,26 +23,26 @@ const params = {
       required_error: 'Product ID is required',
     }),
   }),
-}
+};
 
 export const createProductSchema = object({
   ...payload,
-})
+});
 
 export const updateProductSchema = object({
   ...payload,
   ...params,
-})
+});
 
 export const deleteProductSchema = object({
   ...params,
-})
+});
 
 export const getProductSchema = object({
   ...params,
-})
+});
 
-export type CreateProductInput = TypeOf<typeof createProductSchema>
-export type UpdateProductInput = TypeOf<typeof updateProductSchema>
-export type ReadProductInput = TypeOf<typeof getProductSchema>
-export type DeleteProductInput = TypeOf<typeof deleteProductSchema>
+export type CreateProductInput = TypeOf<typeof createProductSchema>;
+export type UpdateProductInput = TypeOf<typeof updateProductSchema>;
+export type ReadProductInput = TypeOf<typeof getProductSchema>;
+export type DeleteProductInput = TypeOf<typeof deleteProductSchema>;
