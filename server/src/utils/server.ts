@@ -2,7 +2,6 @@ import express from 'express';
 import cookieParser from 'cookie-parser';
 import deserialiseUser from '../middleware/deserialiseUser';
 import routes from '../routes';
-import setHeaders from '../middleware/setHeaders';
 import cors from 'cors';
 import config from 'config';
 
