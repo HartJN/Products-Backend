@@ -56,8 +56,6 @@ function RegisterPage() {
     }
   }
 
-  console.log({ errors });
-
   return (
     <>
       <p>{registerError}</p>

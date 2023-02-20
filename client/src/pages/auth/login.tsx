@@ -36,8 +36,6 @@ function LoginPage() {
     }
   }
 
-  console.log({ errors });
-
   return (
     <>
       <p>{loginError}</p>

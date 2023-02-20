@@ -1,7 +1,9 @@
 import { GetServerSideProps, NextPage } from 'next';
 import useSwr from 'swr';
+
 import fetcher from '@/utils/fetcher';
 import styles from '@/styles/Home.module.css';
+import getGoogleOAuthURL from '@/utils/getGoogleUrl';
 
 interface User {
   _id: string;
@@ -30,7 +32,13 @@ const Home: NextPage<{ fallbackData: User }> = ({ fallbackData }) => {
     );
   }
 
-  return <div className={styles.container}>please Login</div>;
+  return (
+    <div className={styles.container}>
+      <a href={'/auth/login'}>Login</a>
+      <a href={getGoogleOAuthURL()}>Login with Google</a>
+      please Login
+    </div>
+  );
 };
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
