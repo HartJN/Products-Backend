@@ -1,6 +1,5 @@
 import { CookieOptions, Request, Response } from 'express';
 import config from 'config';
-import jwt from 'jsonwebtoken';
 
 import logger from '../utils/logger';
 import { signJwt } from '../utils/jwt.utils';
@@ -81,23 +80,15 @@ export async function deleteSessionHandler(req: Request, res: Response) {
 
 export async function googleOAuthHandler(req: Request, res: Response) {
   try {
-    //get code from query string
     const code = req.query.code as string;
 
     const { id_token, access_token } = await getGoogleOAuthTokens({ code });
 
-    //get the id and access token with the code
-
-    // get the user with tokens
-
-    // const googleUser = jwt.decode(id_token);
     const googleUser = await getGoogleUser({ id_token, access_token });
 
     if (!googleUser.verified_email) {
       return res.status(403).send('Google email not verified');
     }
-
-    // upsert the user
 
     const user = await findAndUpdateUser(
       { email: googleUser.email },
@@ -113,8 +104,6 @@ export async function googleOAuthHandler(req: Request, res: Response) {
       throw new Error('User not found');
     }
 
-    // create a session
-
     const session = await createSession(user._id, req.get('user-agent') || '');
 
     const accessToken = signJwt(
@@ -127,15 +116,9 @@ export async function googleOAuthHandler(req: Request, res: Response) {
       { expiresIn: config.get('refreshTokenTtl') }
     );
 
-    // create an access  and refresh token
-
-    // set cookie
-
     res.cookie('accessToken', accessToken, accessTokenCookieOptions);
-
     res.cookie('refreshToken', refreshToken, refreshTokenCookieOptions);
 
-    // redirect to the client}
     res.redirect(config.get('origin'));
   } catch (err) {
     logger.error(err);
