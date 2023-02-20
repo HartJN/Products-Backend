@@ -113,9 +113,11 @@ describe('user', () => {
         };
 
         const send = jest.fn();
+        const cookie = jest.fn();
 
         const res = {
           send,
+          cookie,
         };
 
         //@ts-ignore

@@ -6,7 +6,7 @@ export interface UserDocument extends mongoose.Document {
   email: string;
   name: string;
   password: string;
-  picture: string;
+  picture?: string;
   createdAt: Date;
   updatedAt: Date;
   comparePassword: (password: string) => Promise<boolean>;
