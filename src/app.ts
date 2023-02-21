@@ -4,6 +4,7 @@ import connect from './utils/connect';
 import logger from './utils/logger';
 import routes from './routes';
 import createServer from './utils/server';
+import swaggerDocs from './utils/swagger';
 
 const app = createServer();
 
@@ -15,4 +16,6 @@ app.listen(port, async () => {
   await connect();
 
   routes(app);
+
+  swaggerDocs(app, port);
 });
