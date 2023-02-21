@@ -1,7 +1,7 @@
 export default {
   publicKey: 'PUBLIC_KEY',
   privatekey: 'PRIVATE_KEY',
-  dbUri: 'PRODUCTION_DB_CONNECTION',
+  dbUri: 'DB_URI',
   port: 'PORT',
   origin: 'ORIGIN_URL',
   saltWorkFactor: 'SALT_ROUNDS',

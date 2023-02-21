@@ -1,27 +1,11 @@
-import express from 'express';
 import config from 'config';
-import cors from 'cors';
-import cookieParser from 'cookie-parser';
 
-import deserialiseUser from './middleware/deserialiseUser';
 import connect from './utils/connect';
 import logger from './utils/logger';
 import routes from './routes';
+import createServer from './utils/server';
 
-const app = express();
-
-app.use(
-  cors({
-    origin: config.get('origin'),
-    credentials: true,
-  })
-);
-app.use(cookieParser());
-
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-
-app.use(deserialiseUser);
+const app = createServer();
 
 const port = config.get<number>('port');
 
