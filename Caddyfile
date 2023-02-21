@@ -1,5 +1,5 @@
 hartjn.studio {
-  reverse_proxy rest-api:5000 {
+  reverse_proxy products-rest-api:5000 {
     header_down Strict-Transport-Security "max-age=31536000";
   }
 }

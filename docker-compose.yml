@@ -1,7 +1,7 @@
 version: '3.7'
 services:
   rest-api:
-    container_name: rest-api
+    container_name: products-rest-api
     restart: unless-stopped
     environment:
       - NODE_ENV=production
@@ -10,7 +10,7 @@ services:
 
   caddy:
     image: caddy/caddy:2.2.1-alpine
-    container_name: caddy-service
+    container_name: caddy-service-products
     restart: unless-stopped
     ports:
       - 80:80
