@@ -29,6 +29,12 @@ export async function createUser(
   >
 ) {
   try {
+    const existingUser = await UserModel.findOne({ email: input.email });
+
+    if (existingUser) {
+      return existingUser;
+    }
+
     const user = await UserModel.create(input);
 
     return omit(user.toJSON(), 'password');

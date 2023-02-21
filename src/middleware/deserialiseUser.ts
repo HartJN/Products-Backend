@@ -3,17 +3,17 @@ import { Request, Response, NextFunction } from 'express';
 import { verifyJwt } from '../utils/jwt.utils';
 import { reIssueAccessToken } from '../service/session.service';
 
-const deserializeUser = async (
+const deserialiseUser = async (
   req: Request,
   res: Response,
   next: NextFunction
 ) => {
-  const accessToken = get(req, 'headers.authorization', '').replace(
-    /^Bearer\s/,
-    ''
-  );
+  const accessToken =
+    get(req, 'cookies.accessToken') ||
+    get(req, 'headers.authorization', '').replace(/^Bearer\s/, '');
 
-  const refreshToken = get(req, 'headers.x-refresh');
+  const refreshToken =
+    get(req, 'cookies.refreshToken') || get(req, 'headers.x-refresh');
 
   if (!accessToken) {
     return next();
@@ -23,6 +23,7 @@ const deserializeUser = async (
 
   if (decoded) {
     res.locals.user = decoded;
+
     return next();
   }
 
@@ -46,4 +47,4 @@ const deserializeUser = async (
   return next();
 };
 
-export default deserializeUser;
+export default deserialiseUser;

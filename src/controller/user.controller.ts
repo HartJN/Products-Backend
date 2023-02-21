@@ -8,7 +8,6 @@ export async function createUserHandler(
   req: Request<{}, {}, CreateUserInput['body']>,
   res: Response
 ) {
-  console.log('hit createUserHandler**************************************');
   try {
     const user = await createUser(req.body);
 

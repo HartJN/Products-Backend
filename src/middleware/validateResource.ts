@@ -12,7 +12,6 @@ const validate =
       });
       next();
     } catch (err: any) {
-      console.log('hit validateResource');
       return res.status(400).send(err.errors);
     }
   };
